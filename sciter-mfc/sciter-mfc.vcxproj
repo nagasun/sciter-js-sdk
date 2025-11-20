@@ -495,11 +495,6 @@
   <ItemGroup>
     <ResourceCompile Include="sciter-mfc.rc" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\build\windows\sciter.vcxproj">
-      <Project>{af4d5b1b-9bef-85f1-84aa-994570eb0c42}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
