@@ -27,7 +27,7 @@ jobs:
       run: nuget restore sciter-mfc/sciter-mfc.sln
     
     - name: Build solution
-      run: msbuild sciter-mfc/sciter-mfc.sln /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} /m
+      run: msbuild sciter-mfc/sciter-mfc.sln /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} /m /v:detailed
     
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
