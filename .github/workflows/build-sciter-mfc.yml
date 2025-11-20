@@ -24,13 +24,13 @@ jobs:
       uses: microsoft/setup-msbuild@v1.1
     
     - name: Restore dependencies
-      run: nuget restore demos/sciter-mfc/sciter-mfc.sln
+      run: nuget restore sciter-mfc/sciter-mfc.sln
     
     - name: Build solution
-      run: msbuild demos/sciter-mfc/sciter-mfc.sln /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} /m
+      run: msbuild sciter-mfc/sciter-mfc.sln /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} /m
     
     - name: Upload artifacts
       uses: actions/upload-artifact@v3
       with:
         name: sciter-mfc-${{ matrix.platform }}-${{ matrix.configuration }}
-        path: bin/windows/
+        path: sciter-mfc/bin/
