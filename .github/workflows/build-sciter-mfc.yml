@@ -1,0 +1,36 @@
+name: Build sciter-mfc for Windows
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    strategy:
+      matrix:
+        configuration: [Release, Debug]
+        platform: [Win32, x64]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1.1
+    
+    - name: Restore dependencies
+      run: nuget restore demos/sciter-mfc/sciter-mfc.sln
+    
+    - name: Build solution
+      run: msbuild demos/sciter-mfc/sciter-mfc.sln /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} /m
+    
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: sciter-mfc-${{ matrix.platform }}-${{ matrix.configuration }}
+        path: bin/windows/
